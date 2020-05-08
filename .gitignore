@@ -136,6 +136,7 @@ venv/
 env.bak/
 venv.bak/
 
+env/dev.env
 env/prod.env
 env/stage.env
 
