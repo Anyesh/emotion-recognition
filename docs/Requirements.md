@@ -88,7 +88,13 @@ Now the company wants to know how satisfied its customers are using their review
 
 **Q2. Do you have any data team? If any please tell how we can contact him/her?**
 
-> We have two engineers working in the data. I will provide the contact details later.
+> We have two engineers working in the data. It is as follows:
+
+| Name        | Phone           | Gmail  |
+| ------------- |:-------------:| -----:|
+| Tribikram Panthi  | 986* | tribikram@gmail.com |
+| Anish Shrestha| 984*     |   anish@gmail.com |
+
 
 ## General
 
@@ -97,9 +103,11 @@ Now the company wants to know how satisfied its customers are using their review
 > We want this system in one month. In the case of genuine issues, we can be flexible with time..
 
 
+-------
+-------
+
 # Requirements Analysis
 ---
-----
 Our client is a running a popular e-commerce site focused towards selling fancy cothing items. They have collected the feedbacks from the customers regarding item quality, delivery service and what was promised. They now want of analyze the feedback to get information on how good their service in the point of view of their customer. 
 
 The major requirements:
