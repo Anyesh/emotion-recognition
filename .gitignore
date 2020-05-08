@@ -128,10 +128,14 @@ dmypy.json
 *.pth
 
 # Environments
-.env
+#.env
 .venv
-env/
+# env/
 venv/
-ENV/
+# ENV/
 env.bak/
 venv.bak/
+
+env/prod.env
+env/stage.env
+
