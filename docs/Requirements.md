@@ -88,8 +88,7 @@ We are storing all our data in the SQL database. We have manually labeled some o
 
 **Q2. Do you have any data team? If any please tell how we can contact him/her?**
 
-
-> We have two engineers working in the data. They is as follows:
+We have two engineers working in the data. They is as follows:
 
 | Name        | Phone           | Gmail  |
 | ------------- |:-------------:| -----:|
