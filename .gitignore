@@ -140,3 +140,5 @@ env/dev.env
 env/prod.env
 env/stage.env
 
+# vscode related
+.vscode/
