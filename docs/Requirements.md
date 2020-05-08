@@ -95,3 +95,30 @@ Now the company wants to know how satisfied its customers are using their review
 **Q1. Do you have any timeline/deadline?**
 
 > We want this system in one month. In the case of genuine issues, we can be flexible with time..
+
+
+# Requirements Analysis
+---
+----
+Our client is a running a popular e-commerce site focused towards selling fancy cothing items. They have collected the feedbacks from the customers regarding item quality, delivery service and what was promised. They now want of analyze the feedback to get information on how good their service in the point of view of their customer. 
+
+The major requirements:
+1. The company want to get meaningful information from the feedback.
+2. The company want to classify the feedback into four emotional categories:
+ * Happy
+ * Sad
+ * Disgust
+ * Anger
+
+## Functional Requirements
+-----
+* They want emotion detection system on item level, customer level, and on item level.
+* They want this system to be added on the admin panel of their existing system.
+* The should should have accuracay over 80%. They will give feedback about precison and recall later.
+
+
+## Timeline
+-----
+The company wants system in one month. However for a genuine issue, they can be flexible with time.
+
+
