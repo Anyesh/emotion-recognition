@@ -1,8 +1,8 @@
 # Emotion Detection and Recognition from Text data
 
-<center>
+<div style="text-align:center">
 <img src="https://devblogs.microsoft.com/cse/wp-content/uploads/sites/55/2015/11/Figure_6_emoticons_on_scale.png"  />
-</center>
+</div>
 
 ## Project Structure
 
