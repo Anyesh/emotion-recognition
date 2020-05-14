@@ -6,40 +6,66 @@ import os
 import pickle
 
 
-VOCAB_SIZE = config.VOCAB_SIZE
-MODEL_NAME = "naive_bayes"
-model = dispatcher.MODELS[MODEL_NAME]
+class TrainModel:
+    def __init__(self, model_name, vocab_size, engine, **kwargs):
+        self._engine = engine
+        self._model_name = model_name
+        self._model = dispatcher.MODELS[model_name](**kwargs)
+        self._vocab_size = vocab_size
+
+    def train(self, train_data, train_label):
+
+        history = None
+        clf = None
+        self._train_data = train_data
+        self._train_label = train_label
+
+        if self._engine == "SKLEARN":
+            print(f"[INFO] Training on {self._model_name} model..")
+            clf = self._model.fit(self._train_data, self._train_label)
+
+            print("[INFO] Saving model..")
+            with open(
+                os.path.join(
+                    config.CHECKPOINT_PATH,
+                    "sklearn_models",
+                    f"{self._model_name}-model.pkl",
+                ),
+                "wb",
+            ) as f:
+                pickle.dump(self._model, f)
+
+        elif self._engine == "KERAS":
+
+            clf = self._model._build()
+            print("[INFO] Training DL model..")
+            history = clf.fit(
+                self._train_data,
+                self._train_label,
+                epochs=5,
+                batch_size=16,
+                validation_split=0.1,
+            )
+            # clf.evaluate(test_data, test_label, batch_size=16)
+
+            print("[INFO] Saving model..")
+            clf.save(
+                os.path.join(config.CHECKPOINT_PATH, "keras_models", "saved_model.h5")
+            )
+
+        print(f"[INFO] Model saved in {config.CHECKPOINT_PATH}")
+        return clf, history
+
+    @classmethod
+    def sklearn(cls, model_name, vocab_size, **kwargs):
+
+        return cls(model_name, vocab_size, engine="SKLEARN", **kwargs)
+
+    @classmethod
+    def keras(cls, model_name, vocab_size, **kwargs):
+
+        return cls(model_name, vocab_size, engine="KERAS", **kwargs)
 
 
-if os.path.isfile(os.path.join(config.CHECKPOINT_PATH, "frozen_data.npy")):
-    print("[INFO] Loading saved data..")
-    train_data, train_label, test_data, test_label = np.load(
-        os.path.join(config.CHECKPOINT_PATH, "frozen_data.npy"), allow_pickle=True
-    )
-else:
-    print("[INFO] No saved data found.. Processing data..")
-    train_data, train_label, test_data, test_label = feature_generator.process_data(
-        VOCAB_SIZE, processor_engine="keras"
-    )
-    np.save(
-        os.path.join(config.CHECKPOINT_PATH, "frozen_data"),
-        [train_data, train_label, test_data, test_label],
-    )
-
-print("[INFO] Processing data complete!!")
-
-
-# print("[INFO] Building a model..")
-# clf = model._build()
-print("[INFO] Training model..")
-clf = model.fit(train_data, train_label)
-# clf.fit(train_data, train_label, epochs=10, batch_size=16, validation_split=0.1)
-# clf.evaluate(test_data, test_label, batch_size=16)
-
-print("[INFO] Saving model..")
-# clf.save(os.path.join(config.CHECKPOINT_PATH, "model_v1.h5"))
-
-with open(
-    os.path.join(config.CHECKPOINT_PATH, f"{MODEL_NAME}-model_v1.pkl"), "wb",
-) as f:
-    pickle.dump(clf, f)
+if __name__ == "__main__":
+    TrainModel.sklearn(model_name="naive_bayes", vocab_size=1000)
