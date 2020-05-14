@@ -26,7 +26,6 @@ class EmotionClassifier:
                 50, input_shape=(self.input_shape,), activation="relu"
             )
         )
-        model.add(tf.keras.layers.Dense(25, activation="relu"))
         model.add(tf.keras.layers.Dense(self.output_shape, activation="sigmoid"))
         model.compile(
             loss=self.criterion, optimizer=self.optimizer, metrics=["accuracy"]

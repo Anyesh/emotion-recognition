@@ -1,14 +1,15 @@
 from sklearn import ensemble
 from sklearn.multiclass import OneVsRestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
+from xgboost import XGBClassifier
+from .neuralnet import EmotionClassifier
 
 
 MODELS = {
-    "randomforest": ensemble.RandomForestClassifier(
-        n_estimators=200, n_jobs=-1, verbose=2
-    ),
-    "extra_trees": ensemble.ExtraTreesClassifier(
-        n_estimators=200, n_jobs=-1, verbose=2
-    ),
-    "naive_bayes": OneVsRestClassifier(MultinomialNB()),
+    "randomforest": ensemble.RandomForestClassifier,
+    "naive_bayes": MultinomialNB,
+    "xgboost": XGBClassifier,
+    "emotion_classifier": EmotionClassifier,
+    "logistic": LogisticRegression,
 }
