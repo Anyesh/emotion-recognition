@@ -66,6 +66,20 @@ The following command will download the dataset from the URL given in `src/confi
 python -m src.data.make_dataset
 ```
 
+### Run
+
+```
+python -m src.main
+```
+
+OR
+
+```
+./run.sh
+```
+
+## Try running modules seperately
+
 ### Train the model
 
 The following command will train the model by first pre-processing the dataset from the `feature_generator.py` and train on the configured ML model.
@@ -84,6 +98,7 @@ python -m src.models.train_model
 
 - [x] Download dataset
 - [x] Pre-process data
-- [ ] Train model
-- [ ] Test model
+- [x] Train model
+- [x] Test model
+- [ ] Main Pipeline
 - [ ] Build model - artifact building
