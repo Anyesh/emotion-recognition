@@ -144,3 +144,7 @@ env/stage.env
 
 # vscode related
 .vscode/
+
+## mlflow
+mlruns/
+mlruns/**
