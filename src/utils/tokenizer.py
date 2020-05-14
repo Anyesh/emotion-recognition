@@ -3,6 +3,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem import WordNetLemmatizer
 
+
 nltk.download("stopwords")
 nltk.download("punkt")
 nltk.download("wordnet")
@@ -21,7 +22,7 @@ def nltk_tokenizer(document):
     return lems
 
 
-def nltk_tokenizer_keras(document):
+def nltk_tokenizer_df(document):
     tokens = _word_tokenizer.tokenize(document)
     tokens = [w.lower() for w in tokens if not w.lower() in _stop_words]
     lems = []
