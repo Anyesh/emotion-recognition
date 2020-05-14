@@ -4,6 +4,7 @@ from src.config import config
 import numpy as np
 import os
 import pickle
+from src.utils.serializer import save_object
 
 
 class TrainModel:
@@ -24,16 +25,12 @@ class TrainModel:
             print(f"[INFO] Training on {self._model_name} model..")
             clf = self._model.fit(self._train_data, self._train_label)
 
-            print("[INFO] Saving model..")
-            with open(
-                os.path.join(
-                    config.CHECKPOINT_PATH,
-                    "sklearn_models",
-                    f"{self._model_name}-model.pkl",
-                ),
-                "wb",
-            ) as f:
-                pickle.dump(self._model, f)
+            save_object(
+                config.CHECKPOINT_PATH,
+                [self._model],
+                ["sklearn_models"],
+                [f"{self._model_name}-model"],
+            )
 
         elif self._engine == "KERAS":
 
