@@ -9,6 +9,9 @@
 ```
 
 ├── README.md          <- README file.
+├── api                <- APIs to interact with the inference model.
+│   ├── example.py
+|
 ├── data
 │   ├── example.csv       <- raw data from third party sources.
 |
@@ -24,10 +27,10 @@
 │
 ├── requirements.txt   <- Pip generated requirements file for the project.
 │
-├── src                <- Source code for use in this project.
+├── emotion_detection     <- Source code for use in this project.
 │   ├── __init__.py
 │   │
-│   ├── config         <- Contins the config files.
+│   ├── config         <- Contains the config files.
 │   │   └── config.py
 |   |
 │   ├── data           <- Scripts to download data and store on root data path.
@@ -45,7 +48,7 @@
 │   │   └── train_model.py
 │   │   └── build_model.py
 |   |
-│   ├── utils          <- Collection ofvarious utility functions.
+│   ├── utils          <- Collection of various utility functions.
 │   │   └── example.py
 
 ```
@@ -63,13 +66,13 @@ pip install -r requirements.txt
 The following command will download the dataset from the URL given in `src/config/config.py` file .
 
 ```
-python -m src.data.make_dataset
+python -m emotion_detection.data.make_dataset
 ```
 
 ### Run
 
 ```
-python -m src.main
+python -m emotion_detection.main
 ```
 
 OR
@@ -85,12 +88,13 @@ OR
 The following command will train the model by first pre-processing the dataset from the `feature_generator.py` and train on the configured ML model.
 
 ```
-python -m src.models.train_model
+python -m emotion_detection.models.train_model
 ```
 
 ### Test the model
 
 ```
+python -m emotion_detection.models.test_model
 
 ```
 
