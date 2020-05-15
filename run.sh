@@ -4,4 +4,4 @@
 # export MODEL=$1
 
 
-python -m src.main
+python -m emotion_detection.main
