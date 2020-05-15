@@ -6,7 +6,7 @@
 | **Experience**       | Using                      | the text feedback which are provided by the users.                                                                                      |
 | **Performance**      | As Measured by             | testing on the validation data and checking the accuracy/f1 score, self checking the output of the trained model by using custom input. |
 | **Reason to solve**  | The output will be used to | know what customer thinks about the product or company, how we can improve the user experience.                                         |
-| **Success Criteria** | It's a success if          | the model has an accuracy/f1 score over 80% on test data.                                                                               |
+| **Success Criteria** | It's a success if          | the model has an accuracy/f1 score over 50% on test data.                                                                               |
 
 ---
 
