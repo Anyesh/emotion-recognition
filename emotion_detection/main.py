@@ -11,27 +11,47 @@ import mlflow
 import mlflow.sklearn
 
 
-VOCAB_SIZE = 2000
-MODEL_NAME = "naive_bayes"
-processor_engine = "SKLEARN"
+# train_data_loader, test_data_loader = process_data(
+#     config.DATA_PATH,
+#     config.DATASET_NAME,
+#     config.MAX_LEN,
+#     processor_engine=processor_engine,
+#     train_size=0.8,
+#     train_batch_size=config.TRAIN_BATCH_SIZE,
+#     test_batch_size=config.VALID_BATCH_SIZE,
+# )
 
-essential_params = {
-    "model_name": MODEL_NAME,
-    "vocab_size": VOCAB_SIZE,
-}
+# trainer = TrainModel.bert(
+#     model_name="bert_classifier",
+#     vocab_size=config.MAX_LEN,
+#     batch_size=config.TRAIN_BATCH_SIZE,
+#     epochs=config.EPOCHS,
+# )
 
-_model_params = {**essential_params, **model_params.naive_bayes_params}
+# clf, _ = trainer.train(
+#     train_data_loader=train_data_loader, test_data_loader=test_data_loader
+# )
+# print(clf)
 
 
-if __name__ == "__main__":
+def main(processor_engine, model_name, input_shape, output_shape):
+
+    VOCAB_SIZE = input_shape
+    _model_params = model_params["model_name"]
+
+    _essential_params = {
+        "input_shape": input_shape,
+        "output_shape": output_shape,
+        **_model_params,
+    }
 
     ## Keras trainer
     # trainer = TrainModel.keras(**_model_params)
 
     ## Sklearn trainer
-    trainer = TrainModel.sklearn(**_model_params)
+    trainer = TrainModel.sklearn(**_essential_params)
 
-    mlflow.log_params(_model_params)
+    mlflow.log_params(_essential_params)
 
     (
         train_data,
@@ -43,7 +63,7 @@ if __name__ == "__main__":
     ) = process_data(
         config.DATA_PATH,
         config.DATASET_NAME,
-        VOCAB_SIZE,
+        input_shape,
         processor_engine=processor_engine,
         train_size=0.7,
     )
@@ -55,10 +75,13 @@ if __name__ == "__main__":
         ["sklearn_data_processor", "label_encoder"],
     )
 
-    clf, history = trainer.train(train_data, train_label)
+    kwargs = {"train_data": train_data, "train_label": train_label}
+
+    clf, history = trainer.train(**kwargs)
     print(clf)
     # test_clf = TestModel.from_path(clf)
     predictions = clf.predict(test_data)
+    print(predictions)
 
     accuracy_score = accuracy_score(predictions, test_label)
     f1_score = f1_score(predictions, test_label, average="weighted")
@@ -78,3 +101,7 @@ if __name__ == "__main__":
         ),
         [train_data, train_label, test_data, test_label],
     )
+
+
+if __name__ == "__main__":
+    main(processor_engine, model_name, input_shape, output_shape)
