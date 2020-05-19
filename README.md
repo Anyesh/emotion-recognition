@@ -140,14 +140,14 @@ python run.py --model-name naiv_bayes --vocab-size 7000 --train-size 0.7
 
 ## Flask Web App
 
+To run the Flask application in docker with MongoDB run the following command.
+Configure the MongoDB URL and DB name at `api/config.cfg`.
+
 ```
 python run_app.py
 ```
 
 ## Run in docker
-
-To run the Flask application in docker with MongoDB run the following command.
-Configure the MongoDB URL and DB name at `api/config.cfg`.
 
 ```
 docker-compose up
@@ -177,4 +177,4 @@ python -m emotion_detection.models.test_model
 - [x] Train model
 - [x] Test model
 - [x] Main Pipeline
-- [x] Flas app
+- [x] Flask app
