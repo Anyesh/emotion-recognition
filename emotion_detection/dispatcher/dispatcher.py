@@ -4,6 +4,7 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.naive_bayes import MultinomialNB
 from xgboost import XGBClassifier
 from sklearn.svm import SVC
+from nbsvm import NBSVMClassifier
 
 
 MODELS = {
@@ -13,4 +14,5 @@ MODELS = {
     "logistic": LogisticRegression,
     "sgd_classifier": SGDClassifier,
     "svm_svc": SVC,
+    "nbsvm": NBSVMClassifier,
 }

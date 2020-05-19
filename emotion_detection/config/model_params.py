@@ -2,7 +2,8 @@ parameters = {
     "bert_classifier": {},
     "xgboost": {},
     "randomforest": {},
-    "naive_bayes": {"alpha": 0.1},
+    "naive_bayes": {"alpha": 0.9, "fit_prior": False},
+    "nbsvm": {},
     "sgd_classifier": {
         "penalty": "l2",
         "alpha": 0.0001,

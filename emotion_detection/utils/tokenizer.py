@@ -5,17 +5,17 @@ from nltk.stem import WordNetLemmatizer
 
 
 _word_tokenizer = RegexpTokenizer(r"\w+")
-_stop_words = set(stopwords.words("english"))
-_lemmatizer = WordNetLemmatizer()
 
 ## to check if nltk needs download
 try:
-    _ = _word_tokenizer.tokenize("i love an apple")
+    _stop_words = set(stopwords.words("english"))
 except:
-
     nltk.download("stopwords")
     nltk.download("punkt")
     nltk.download("wordnet")
+    _stop_words = set(stopwords.words("english"))
+
+_lemmatizer = WordNetLemmatizer()
 
 
 def nltk_tokenizer(document):

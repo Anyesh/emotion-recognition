@@ -17,13 +17,6 @@ class TestModel(object):
 
         try:
             predictions = self._model.predict(processed_data)
-            # from lime.lime_text import LimeTextExplainer
-
-            # explainer = LimeTextExplainer(class_names=self._model.classes_[0])
-            # exp = explainer.explain_instance(
-            #     "i love you", self._model.predict_proba, num_features=7, top_labels=2,
-            # )
-            # exp.as_html()
 
             try:
                 proba = self._model.predict_proba(processed_data)
