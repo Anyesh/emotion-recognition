@@ -3,4 +3,4 @@ from api import settings
 
 if __name__ == "__main__":
 
-    app.run(debug=settings.DEBUG)
+    app.run(host="0.0.0.0", port=5000, debug=settings.DEBUG)
