@@ -1,0 +1,15 @@
+version: "2"
+services:
+  app:
+    container_name: "emotion_detection"
+    build: .
+    links:
+      - db
+    ports:
+      - "5000:5000"
+  db:
+    image: mongo
+    container_name: "mongodb"
+
+    ports:
+      - "27017:27017"

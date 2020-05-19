@@ -54,7 +54,7 @@ We like how humans can understand emotions just from reading the text. We want o
 
 **Q1. Well, there are basically 6 types of human emotion: sad, happy, surprise, disgust, fear, and anger. Do you think all these emotions are expressed in the product review? Can you please tell us, addressing which of these emotional aspects are more important for your product/company?**
 
-As of our experience, most of the review contains the emotion of happy, sad, disgust, and anger. We don’t think there was any review with the emotion of fear.
+As of our experience, most of the review contains the emotion of happy, sad, disgust, surprise, and anger. We think we can include other mentioned emotions as well.
 
 **Q2. Assume that you have a product that can distinguish different emotions, then how are you going to use this product? For example, will you act based on the emotions level or do you just want to know how satisfied are your customers/ how good is your service?**
 
@@ -90,12 +90,10 @@ We are storing all our data in the SQL database. We have manually labeled some o
 
 We have two engineers working in the data. They is as follows:
 
-| Name        | Phone           | Gmail  |
-| ------------- |:-------------:| -----:|
-| Tribikram Panthi  | 986* | tribikram@gmail.com |
-| Anish Shrestha| 984*     |   anish@gmail.com |
-
-
+| Name             | Phone |               Gmail |
+| ---------------- | :---: | ------------------: |
+| Tribikram Panthi | 986\* | tribikram@gmail.com |
+| Anish Shrestha   | 984\* |     anish@gmail.com |
 
 ## General
 
@@ -105,13 +103,9 @@ We want this system in one month. In the case of genuine issues, we can be flexi
 
 ---
 
--------
--------
-
 # Requirements Analysis
 
 Our client is a running a popular e-commerce site focused towards selling fancy cothing items. They have collected the feedbacks from the customers regarding item quality, delivery service and what was promised. They now want of analyze the feedback to get information on how good their service in the point of view of their customer.
-
 
 The major requirements:
 

@@ -1,0 +1,63 @@
+{% extends 'master.html' %} {% block content %}
+
+<h1 class="text-center mt-5">Prediction Logs</h1>
+<hr />
+{% if not data %}
+
+<h3 class="text-center mt-5">No Data</h3>
+
+{% else %}
+
+<ul class="list-group mt-5">
+  {% for d in data %}
+  <span id="{{d._id}}">
+    <li class="list-group-item list-group-item-action active">
+      <strong>Text: </strong>
+      {{d.text}}
+      <small class="float-right">{{d.timestamp.strftime('%Y-%m-%d')}}</small>
+    </li>
+    <li
+      class="list-group-item list-group-item-action"
+      title="{{d._id}}"
+      id="{{d._id}}"
+    >
+      <strong>
+        Model Name:
+      </strong>
+      {{d.model_name}} |
+
+      <strong>
+        Prediction:
+      </strong>
+      {{d.prediction}} |
+
+      <strong>
+        Time taken:
+      </strong>
+      {{d.time_taken}}
+      <button
+        class="btn btn-sm btn-danger float-right"
+        onclick="_delete(this);"
+      >
+        Delete
+      </button>
+    </li>
+  </span>
+  {% endfor %}
+</ul>
+
+<script type="text/javascript">
+  const _delete = (elem) => {
+    console.log(elem.parentNode.id);
+    id = elem.parentNode.id;
+    res = confirm("Are you sure you want to delete?");
+    if (res) {
+      fetch(`/api/v1/remove-model-output/${id}`, {
+        method: "DELETE",
+      }).then((response) => {
+        window.location.reload();
+      });
+    }
+  };
+</script>
+{% endif %} {% endblock %}
