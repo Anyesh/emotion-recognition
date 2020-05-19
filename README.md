@@ -144,6 +144,15 @@ python run.py --model-name naiv_bayes --vocab-size 7000 --train-size 0.7
 python run_app.py
 ```
 
+## Run in docker
+
+To run the Flask application in docker with MongoDB run the following command.
+Configure the MongoDB URL and DB name at `api/config.cfg`.
+
+```
+docker-compose up
+```
+
 ## Try running modules seperately
 
 ### Train the model
