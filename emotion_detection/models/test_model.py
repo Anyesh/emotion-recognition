@@ -1,7 +1,6 @@
 import pickle
 import os
-
-from emotion_detection.config import config
+import numpy as np
 
 
 class TestModel(object):
@@ -16,8 +15,38 @@ class TestModel(object):
         if self._use_processor:
             processed_data = self._processor.transform_text(instances)
 
-        predictions = self._model.predict(processed_data)
-        return predictions
+        try:
+            predictions = self._model.predict(processed_data)
+            # from lime.lime_text import LimeTextExplainer
+
+            # explainer = LimeTextExplainer(class_names=self._model.classes_[0])
+            # exp = explainer.explain_instance(
+            #     "i love you", self._model.predict_proba, num_features=7, top_labels=2,
+            # )
+            # exp.as_html()
+
+            try:
+                proba = self._model.predict_proba(processed_data)
+            except:
+                proba = np.zeros((2, self._model.classes_.shape[0]))
+
+            classes = self._model.classes_
+            probabilities = dict(zip(classes, proba[0]))
+
+            return predictions, probabilities
+        except Exception as e:
+            print("Invalid model !!", e)
+
+    def predict_proba(self, instances):
+
+        processed_data = self._processor.transform_text(instances)
+
+        proba = self._model.predict_proba(processed_data)
+
+        classes = self._model.classes_
+        probabilities = dict(zip(classes, proba[0]))
+
+        return proba
 
     @classmethod
     def from_path(cls, model, processor_path=None, use_processor=False):

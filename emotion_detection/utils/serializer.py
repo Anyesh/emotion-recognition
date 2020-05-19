@@ -4,8 +4,10 @@ import os
 
 def save_object(checkpoint_path, obj_arr, folder_arr, filename_arr):
 
+    """ Function to save objects
+    """
 
-    print("[INFO] Saving..")
+    print(f"[INFO] Saving {' '.join(filename_arr)}")
 
     for i, v in enumerate(obj_arr):
         with open(
@@ -14,5 +16,4 @@ def save_object(checkpoint_path, obj_arr, folder_arr, filename_arr):
         ) as f:
             pickle.dump(obj_arr[i], f)
 
-        print("[INFO] Saved data..")
     return True
