@@ -49,7 +49,11 @@
 │   │   └── build_model.py
 |   |
 │   ├── utils          <- Collection of various utility functions.
-│   │   └── example.py
+|   |   └── example.py
+|   |
+│   ├── run_app.py      <- script to run the flask web app
+│   ├── run.py          <- script to run the model training
+│   ├── simple_inference.py     <- script to test the model on cli
 
 ```
 
@@ -59,6 +63,59 @@
 
 ```
 pip install -r requirements.txt
+```
+
+## Config File
+
+Config file at `emotion_detection/config/config.py` contains all the necessary configurations. Please make sure to check that before preoceeding.
+
+### Example:
+
+```
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+DATA_PATH = os.path.join(BASE_DIR, "data", "raw")
+
+DATASET_NAME = "ISEAR_dataset.csv"
+
+DATASET_URL = <dataset-url>
+
+MODEL_PATH = os.path.join(BASE_DIR, "models")
+
+CHECKPOINT_PATH = os.path.join(BASE_DIR, "checkpoints")
+
+```
+
+### Dispatcher
+
+All the available ML models should be listed in the `emotion_detection/dispatcher/dispatcher.py` file. This will be used as the `model-name` while training and testing.
+
+Example:
+
+```
+MODELS = {
+    "randomforest": ensemble.RandomForestClassifier,
+    "naive_bayes": MultinomialNB,
+    "xgboost": XGBClassifier,
+    "logistic": LogisticRegression,
+    "sgd_classifier": SGDClassifier,
+    "svm_svc": SVC,
+}
+```
+
+### Model parameters
+
+Hyperparameters for the listed models are to be stored in the `emotion_detection/config/model_params.py` file with the same name as the listed models in dispatcher.
+
+Example:
+
+```
+"bert_classifier": {},
+"xgboost": {},
+"randomforest": {},
+"naive_bayes": {"alpha": 0.1},
 ```
 
 ### Download the dataset
@@ -72,13 +129,19 @@ python -m emotion_detection.data.make_dataset
 ### Run
 
 ```
-python -m emotion_detection.main
+python run.py --model-name <model-name> --vocab-size <vocab-size> --train-size <train-size>
 ```
 
-OR
+Example:
 
 ```
-./run.sh
+python run.py --model-name naiv_bayes --vocab-size 7000 --train-size 0.7
+```
+
+## Flask Web App
+
+```
+python run_app.py
 ```
 
 ## Try running modules seperately
@@ -104,5 +167,5 @@ python -m emotion_detection.models.test_model
 - [x] Pre-process data
 - [x] Train model
 - [x] Test model
-- [ ] Main Pipeline
-- [ ] Build model - artifact building
+- [x] Main Pipeline
+- [x] Flas app
