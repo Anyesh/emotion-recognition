@@ -1,0 +1,57 @@
+<script type="text/javascript">
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    text = document.querySelector("#text").value;
+    e = document.querySelector("#model_name");
+    model_name = e.options[e.selectedIndex].value;
+
+    btn = document.querySelector("#btn");
+    pos_output = document.querySelector("#pos-output");
+
+    pos_score = document.querySelector("#pos-score");
+    neg_score = document.querySelector("#neg-score");
+    neg_output = document.querySelector("#neg-output");
+    empty_container = document.querySelector("#empty_container");
+
+    btn.disabled = true;
+
+    if (text == "") {
+      alert("Invalid data");
+      return false;
+    }
+    const data = { text: text, model_name: model_name };
+
+    fetch("/api/v1/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        btn.disabled = false;
+        var doc = document.getElementById("iframe").contentWindow.document;
+        doc.open();
+        doc.write(data.explainer);
+        doc.close();
+        empty_container.style.display = "none";
+
+        if (data.data.sentiment === "P") {
+          pos_output.style.display = "block";
+          neg_output.style.display = "none";
+          pos_score.innerHTML = data.data.prediction;
+        } else {
+          pos_output.style.display = "none";
+          neg_output.style.display = "block";
+          neg_score.innerHTML = data.data.prediction;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+
+        btn.disabled = false;
+      });
+  };
+</script>

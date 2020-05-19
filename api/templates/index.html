@@ -1,0 +1,76 @@
+{% extends 'master.html' %} {% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <h1 class="text-center display-4 mt-4">Emotion Detection</h1>
+    <hr />
+
+    <div id="pos-output">
+      <div class="alert alert-dismissible alert-success">
+        <strong>Yayy!</strong> Sentiment for given input is
+        <strong class="text-dark">Positive</strong> with label:
+        <strong id="pos-score" class="text-dark text-uppercase">0.0</strong>
+      </div>
+    </div>
+    <div id="neg-output">
+      <div class="alert alert-dismissible alert-danger">
+        <strong>Ohh!</strong> Sentiment for given input is
+        <strong class="text-dark">Negative</strong> with label:
+        <strong id="neg-score" class="text-dark text-uppercase">0.0</strong>
+      </div>
+    </div>
+
+    <div class="jumbotron p-3">
+      <div class="text-center mx-auto">
+        <img
+          src="https://holisticseekers.com/wp-content/uploads/2018/08/emotion-svg.png"
+          alt=""
+          class="img-responsive img-sm"
+        />
+      </div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Enter your text to classify:</label>
+
+          <textarea class="form-control" id="text"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="">Model name: </label>
+          <select name="" id="model_name" class="custom-select">
+            <option value="naive_bayes" selected>Naive Bayes</option>
+            <option value="sgd_classifier">SGD Classifier</option>
+            <option value="svm_svc">SVM Classifier</option>
+
+            <!-- <option value="1">1</option> -->
+          </select>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block btn-success" type="submit" id="btn">
+            Get results
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h1 class="display-4 mt-4 text-center">Results</h1>
+    <hr />
+    <div class="jumbotron w-100 result-tron p-1 bg-transparent">
+      <p class="text-center" id="empty_container">
+        Nothig to show here!!
+      </p>
+      <iframe
+        id="iframe"
+        style="
+          width: 100%;
+          height: 100%;
+          border: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        "
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+{% include 'js_block.html' %} {% endblock %}
