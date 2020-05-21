@@ -1,7 +1,7 @@
 # Emotion Detection and Recognition from Text data
 
 <p align="center">
-<img src="https://devblogs.microsoft.com/cse/wp-content/uploads/sites/55/2015/11/Figure_6_emoticons_on_scale.png"  />
+<img src="./example.png"  />
 </p>
 
 ## Project Structure
@@ -126,10 +126,16 @@ The following command will download the dataset from the URL given in `src/confi
 python -m emotion_detection.data.make_dataset
 ```
 
-### Run
+### Train the models
 
 ```
 python run.py --model-name <model-name> --vocab-size <vocab-size> --train-size <train-size>
+```
+
+### Test - Simple inference
+
+```
+python simple_inference.py --model-name <model-name>
 ```
 
 Example:
@@ -142,6 +148,8 @@ python run.py --model-name naiv_bayes --vocab-size 7000 --train-size 0.7
 
 To run the Flask application in docker with MongoDB run the following command.
 Configure the MongoDB URL and DB name at `api/config.cfg`.
+
+Change to local DB if not using docker.
 
 ```
 python run_app.py
@@ -178,3 +186,4 @@ python -m emotion_detection.models.test_model
 - [x] Test model
 - [x] Main Pipeline
 - [x] Flask app
+- [ ] Clean build
