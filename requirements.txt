@@ -2,7 +2,7 @@
 
 Flask==1.1.2
 
-mlflow==1.8.0
+mlflow==1.23.1
 
 nltk==3.5
 notebook==6.1.5
