@@ -51,8 +51,9 @@ class TrainModel:
         clf = None
 
         clf, history = getattr(
-            self, "_" + str(self._engine).lower(), lambda **kwargs: "Invalid!"
+            self, f"_{str(self._engine).lower()}", lambda **kwargs: "Invalid!"
         )(**kwargs)
+
 
         return clf, history
 

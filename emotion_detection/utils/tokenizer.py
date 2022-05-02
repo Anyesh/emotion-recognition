@@ -23,11 +23,8 @@ def nltk_tokenizer(document):
     """ NLTK tokenizer function
     """
 
-    tokens = [w.lower() for w in tokens if not w.lower() in _stop_words]
-    lems = []
-    for item in tokens:
-        lems.append(_lemmatizer.lemmatize(item))
-    return lems
+    tokens = [w.lower() for w in tokens if w.lower() not in _stop_words]
+    return [_lemmatizer.lemmatize(item) for item in tokens]
 
 
 def nltk_tokenizer_df(document):
@@ -35,8 +32,6 @@ def nltk_tokenizer_df(document):
     """ NLTK tokenizer to work with dataframe
     """
     tokens = _word_tokenizer.tokenize(document)
-    tokens = [w.lower() for w in tokens if not w.lower() in _stop_words]
-    lems = []
-    for item in tokens:
-        lems.append(_lemmatizer.lemmatize(item))
+    tokens = [w.lower() for w in tokens if w.lower() not in _stop_words]
+    lems = [_lemmatizer.lemmatize(item) for item in tokens]
     return " ".join(lems)

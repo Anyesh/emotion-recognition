@@ -24,7 +24,7 @@ def add_model_names():
 
     except Exception as e:
         # Error while trying to create the resource
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         return Response("Error while trying to create resource")
 
 
@@ -58,7 +58,7 @@ def update_model_name(model_id):
     except Exception as e:
         # Error while trying to update the resource
         # Add message for debugging purpose
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         return Response("Error while updating the resource", status=500)
 
 
@@ -72,17 +72,14 @@ def view_models():
         # Fetch all the record(s)
         records_fetched = collection.find({})
 
-        # Check if the records are found
-        if records_fetched.count() > 0:
-            # Prepare the response
-            records = dumps(records_fetched)
-            resp = Response(records, status=200, mimetype="application/json")
-            return resp
-        else:
+        if records_fetched.count() <= 0:
             # No records are found
             return Response("No records are found", status=404)
+        # Prepare the response
+        records = dumps(records_fetched)
+        return Response(records, status=200, mimetype="application/json")
     except Exception as e:
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         # Error while trying to fetch the resource
         return Response("Error while trying to fetch the resource", status=500)
 
@@ -105,7 +102,7 @@ def remove_model(model_id):
     except Exception as e:
         # Error while trying to delete the resource
         # Add message for debugging purpose
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         return Response("Resource deletion failed", status=500)
 
 
@@ -139,7 +136,7 @@ def update_model_output(model_id):
     except Exception as e:
         # Error while trying to update the resource
         # Add message for debugging purpose
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         return Response("Error while updating the resource", status=500)
 
 
@@ -153,17 +150,14 @@ def view_model_outputs():
         # Fetch all the record(s)
         records_fetched = collection.find({})
 
-        # Check if the records are found
-        if records_fetched.count() > 0:
-            # Prepare the response
-            records = dumps(records_fetched)
-            resp = Response(records, status=200, mimetype="application/json")
-            return resp
-        else:
+        if records_fetched.count() <= 0:
             # No records are found
             return Response("No records are found", status=404)
+        # Prepare the response
+        records = dumps(records_fetched)
+        return Response(records, status=200, mimetype="application/json")
     except Exception as e:
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         # Error while trying to fetch the resource
         return Response("Error while trying to fetch the resource", status=500)
 
@@ -186,5 +180,5 @@ def remove_model_output(model_id):
     except Exception as e:
         # Error while trying to delete the resource
         # Add message for debugging purpose
-        print("Exception: {}".format(e))
+        print(f"Exception: {e}")
         return Response("Resource deletion failed", status=500)

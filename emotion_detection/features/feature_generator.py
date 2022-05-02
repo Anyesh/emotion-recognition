@@ -70,25 +70,15 @@ def process_data(
 
     print(f"[INFO] Train size:{X_train.shape} & Test size: {X_test.shape}")
 
-    # if processor_engine == "KERAS":
-
-    #     processor = KerasTextPreprocessor(vocab_size)
-
-    #     processor.create_tokenizer(data["texts"].values)
-
-    #     train_data = processor.transform_text(X_train)
-    #     test_data = processor.transform_text(X_test)
-
-    if processor_engine == "SKLEARN":
-        processor = TFIDFProcessor(feature_size=vocab_size)
-
-        processor.create_vocab(data["texts"].values)
-
-        train_data = processor.transform_text(X_train)
-        test_data = processor.transform_text(X_test)
-
-    else:
+    if processor_engine != "SKLEARN":
         raise "[ERROR] No processor engine!!"
+
+    processor = TFIDFProcessor(feature_size=vocab_size)
+
+    processor.create_vocab(data["texts"].values)
+
+    train_data = processor.transform_text(X_train)
+    test_data = processor.transform_text(X_test)
 
     # train_labels = label_encoded[:_train_size]
     # test_labels = label_encoded[_train_size:]

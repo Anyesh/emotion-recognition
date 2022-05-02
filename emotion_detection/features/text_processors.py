@@ -43,5 +43,4 @@ class TFIDFProcessor:
 
     def transform_text(self, text_list):
 
-        text_matrix = self._vectorizer.transform(text_list).toarray()
-        return text_matrix
+        return self._vectorizer.transform(text_list).toarray()
